@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card-header">Board</div>
+<div class="card-header">{{ $user->name }}の投稿</div>
 <div class="card-body">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -9,7 +9,7 @@
         </div>
     @endif
 
-    @foreach($posts as $post)
+    @foreach($user->posts as $post)
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
