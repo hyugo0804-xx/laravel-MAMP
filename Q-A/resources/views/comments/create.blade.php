@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 @endif
-        <form action="{{ route('posts.store')}}" method="POST">
+        <form action="{{ route('comments.store')}}" method="POST">
             @csrf
 
             <div class="form-group">

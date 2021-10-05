@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
+
+use App\Models\Comment;
+
 
 class CommentController extends Controller
 {
@@ -36,9 +40,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        $comment = new Comment;
+        $input = $request->only($comment->getFillable());
+
+        $comment = $comment->create($input);
+
+       return redirect('/posts/'.$comment->post_id);
     }
 
     /**
