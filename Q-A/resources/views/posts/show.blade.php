@@ -21,5 +21,14 @@
                             <p class="card-text">{{$post->content}}</p>
                         </div>
                     </div>
-                  
+
+                    <div class="p-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">{{ $post->content }}</p>
+                            </div>
+                        </div>
+                        <a href="{{ route('comments.create', ['post_id' => $post->id]) }}" class="btn btn-primary">コメントする</a>
+                    </div>
+</div>       
 @endsection
