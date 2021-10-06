@@ -1,7 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>検索フォーム</h5>
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <form action="{{route('posts.search')}}" method='POST'>
+                            @csrf
+                        <input type="text" class="form-control input-lg" name='search' placeholder="Buscar" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="card-header">Board</div>
+@isset($search_result)
+    <h5 class='card-title'>{{ $search_result }}</h5>
+@endisset
 <div class="card-body">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -29,6 +54,14 @@
                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細</a>
                     </div>
                 </div>
-        @endforeach
+    @endforeach
+
+    @if(isset($category_id))
+        {{ $posts->appends(['category_id' => $category_id])->links('pagination::bootstrap-4') }}
+    @else
+        {{ $posts->links('pagination::bootstrap-4') }}
+    @endif
+
+
 </div>
 @endsection

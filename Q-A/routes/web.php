@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::POST('/posts/search', [App\Http\Controllers\PostController::class, 'search'])->name('posts.search');
+
 
 Route::resource('/posts', 'PostController',  ['except' => ['index']]);
 Route::resource('/users', 'UserController');
